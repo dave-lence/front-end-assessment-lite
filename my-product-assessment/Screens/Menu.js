@@ -67,59 +67,59 @@ const Menu = () => {
           onRefresh={() => setProducts([
             {
               id: 5,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/beans7.png")
            },
           {
               id: 6,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/beans3.png")
            },
           {
               id: 7,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/burgitos.png")
            },
           {
               id: 8,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/beans6.png")
            },
             {
               id: 9,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/cart2.png")
            },
           {
               id: 10,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/product6.png")
            },
           {
               id: 11,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/product7.png")
            },
           {
               id: 12,
-              price: 100,
+              price: 100.00,
               productName: "Vaserce Bag",
               img: require("../assets/product8.png")
            },
           ])}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          
-          keyExtractor={(prod) => prod.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <ProductCard
+              key={item.id}
               productPrice={item.price}
               productImage={item.img}
               productName={item.productName}

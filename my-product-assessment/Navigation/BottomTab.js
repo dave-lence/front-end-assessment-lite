@@ -10,6 +10,7 @@ import Home from "../Screens/Home";
 import Menu from "../Screens/Menu";
 import Cart from "../Screens/Cart";
 import Account from "../Screens/account";
+import MenuNavigator from "./MenuStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,11 +20,11 @@ const BottomTab = () => {
       screenOptions={({ route }) => ({
         tabBarIcon:({focused, size, color}) => {
             let iconName
-            if(route.name == "homeScreen"){
+            if(route.name == "HomeScreen"){
                 iconName = focused ? "home-variant" : "home-variant-outline"
-            } else if(route.name == "menuScreen"){
+            } else if(route.name == "MenuScreen"){
                 iconName = focused ? "apps-box" : "apps"
-            } else if (route.name == "cartScreen"){
+            } else if (route.name == "CartScreen"){
                 iconName = focused ? "cart" : "cart-outline"
             } else {
                 iconName = focused ? "account-circle" : "account-circle-outline"
@@ -39,22 +40,22 @@ const BottomTab = () => {
     >
       <Tab.Screen
         component={Home}
-        name="homeScreen"
+        name="HomeScreen"
         options={{ title: "Home" }}
       />
       <Tab.Screen
-        component={Menu}
-        name="menuScreen"
+        component={MenuNavigator}
+        name="MenuScreen"
         options={{ title: "Menu" }}
       />
       <Tab.Screen
         component={Cart}
-        name="cartScreen"
+        name="CartScreen"
         options={{ title: "Cart" }}
       />
       <Tab.Screen
         component={Account}
-        name="accountScreen"
+        name="AccountScreen"
         options={{ title: "Account" }}
       />
     </Tab.Navigator>
