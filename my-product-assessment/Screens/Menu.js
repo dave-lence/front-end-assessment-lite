@@ -1,12 +1,17 @@
-import { View, Text,  TextInput } from "react-native";
-import React from "react";
+import { View, Text, TextInput, ScrollView, FlatList } from "react-native";
+import React, { useState } from "react";
 import Constants from "expo-constants";
 import { ww } from "../responsive";
-import { AntDesign } from '@expo/vector-icons';
-import ProductCard from "../Components/MenuComponents/ProductCard";
+import { AntDesign } from "@expo/vector-icons";
 
+//custom files
+import ProductCard from "../Components/MenuComponents/ProductCard";
+import { productData } from "../appData";
 
 const Menu = () => {
+  const [products, setProducts] = useState(productData);
+  const [refreshing, setRefreshing] = useState(false);
+
   return (
     <View
       style={{
@@ -41,23 +46,89 @@ const Menu = () => {
             flexDirection: "row",
             alignItems: "center",
             gap: 10,
-            borderWidth:0.5,
-            borderColor:"#858585"
+            borderWidth: 0.5,
+            borderColor: "#858585",
           }}
         >
           <AntDesign name="search1" size={ww(24)} color="black" />
-          <TextInput style={{flex:1,}} placeholder="Search" cursorColor={"black"}/>
+          <TextInput
+            style={{ flex: 1 }}
+            placeholder="Search"
+            cursorColor={"black"}
+          />
         </View>
 
         {/* product cards */}
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+
+        <FlatList
+        style={{alignSelf:"center", marginBottom:ww(150)}}
+          data={products}
+          refreshing={refreshing}
+          onRefresh={() => setProducts([
+            {
+              id: 5,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/beans7.png")
+           },
+          {
+              id: 6,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/beans3.png")
+           },
+          {
+              id: 7,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/burgitos.png")
+           },
+          {
+              id: 8,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/beans6.png")
+           },
+            {
+              id: 9,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/cart2.png")
+           },
+          {
+              id: 10,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/product6.png")
+           },
+          {
+              id: 11,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/product7.png")
+           },
+          {
+              id: 12,
+              price: 100,
+              productName: "Vaserce Bag",
+              img: require("../assets/product8.png")
+           },
+          ])}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          
+          keyExtractor={(prod) => prod.id.toString()}
+          renderItem={({ item }) => (
+            <ProductCard
+              productPrice={item.price}
+              productImage={item.img}
+              productName={item.productName}
+            />
+          )}
+        />
       </View>
     </View>
   );
 };
 
-
-
-export default Menu
+export default Menu;

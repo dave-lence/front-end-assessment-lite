@@ -3,38 +3,40 @@ import React from "react";
 import { ww } from "../../responsive";
 import { EvilIcons } from "@expo/vector-icons";
 
-const ProductCard = () => {
+const ProductCard = ({productImage,productName, productPrice}) => {
   return (
     <TouchableOpacity
       style={{
         backgroundColor: "#fff",
         borderRadius: 10,
-        padding: ww(10),
-        height: ww(228),
-        width: ww(155),
-        marginVertical: ww(10),
-        marginHorizontal: ww(20),
+        padding: ww(20),
+        height: ww(250),
+        width: ww(185),
+        marginVertical: ww(20),
+        marginHorizontal:ww(10),
+        overflow:"hidden"
       }}
       activeOpacity={0.7}
     >
       <Image
-        source={require("../../assets/beans4.png")}
-        resizeMode="cover"
-        style={{}}
+        source={productImage}
+         style={{width:"70%", height:"70%", alignSelf:'center'}}
+        
       />
 
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "space-between",
+          gap:ww(10),
           alignItems: "center",
+          marginTop:ww(10),
         }}
       >
-        <Text style={{ fontWeight: "500", fontSize: ww(14) }}>
-          TITLE Of pro...
+        <Text style={{ fontWeight: "500", fontSize: ww(14), flex:1 }}>
+         {productName}
         </Text>
-        <Text style={{ color: "#DB3C25", fontWeight: "500", fontSize: ww(14) }}>
-          $30
+        <Text style={{ color: "#DB3C25", fontWeight: "500", fontSize: ww(14), }}>
+          ${productPrice}
         </Text>
       </View>
 
@@ -45,10 +47,11 @@ const ProductCard = () => {
           borderRadius: ww(50),
           backgroundColor: "#DB3C25",
           alignItems: "center",
-          marginTop: ww(15),
+          marginTop: ww(10),
           flexDirection: "row",
           gap: 5,
           justifyContent: "center",
+         
         }}
         activeOpacity={0.7}
       >
