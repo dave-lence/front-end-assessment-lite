@@ -73,19 +73,19 @@ const Menu = () => {
            },
           {
               id: 6,
-              price: 100.00,
+              price: 10.00,
               productName: "Vaserce Bag",
               img: require("../assets/beans3.png")
            },
           {
               id: 7,
-              price: 100.00,
+              price: 200.00,
               productName: "Vaserce Bag",
               img: require("../assets/burgitos.png")
            },
           {
               id: 8,
-              price: 100.00,
+              price: 105.00,
               productName: "Vaserce Bag",
               img: require("../assets/beans6.png")
            },
@@ -97,19 +97,19 @@ const Menu = () => {
            },
           {
               id: 10,
-              price: 100.00,
+              price: 170.00,
               productName: "Vaserce Bag",
               img: require("../assets/product6.png")
            },
           {
               id: 11,
-              price: 100.00,
+              price: 140.00,
               productName: "Vaserce Bag",
               img: require("../assets/product7.png")
            },
           {
               id: 12,
-              price: 100.00,
+              price: 190.00,
               productName: "Vaserce Bag",
               img: require("../assets/product8.png")
            },

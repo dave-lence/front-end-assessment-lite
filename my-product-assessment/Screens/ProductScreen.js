@@ -6,39 +6,25 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Constants from "expo-constants";
 import { ww } from "../responsive";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Octicons, Fontisto } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 
 //custm files
 import DropDowns from "../Components/MenuComponents/DropDowns";
+import { productInfoData } from "../productInformation";
+import Button from "../Components/Button";
 
 const ProductScreen = () => {
   const navigation = useNavigation();
+  const [readMore, setReadMore] = useState(false);
   const {
     params: { productName, productPrice, productImage },
   } = useRoute();
 
-  const data = [
-    {
-      id: 1,
-      text: "as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web p",
-    },
-    {
-      id: 2,
-      text: " 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-    },
-    {
-      id: 3,
-      text: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old",
-    },
-    {
-      id: 4,
-      text: "as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web p",
-    },
-  ];
+  const [data, setData] = useState(productInfoData);
 
   return (
     <View
@@ -114,27 +100,107 @@ const ProductScreen = () => {
           </View>
           {/* description */}
           <Text
-            style={{ marginTop: ww(10), fontSize: ww(12), fontWeight: "500" }}
+            style={{
+              marginTop: ww(10),
+              fontSize: ww(14),
+              fontWeight: "400",
+              lineHeight: ww(16),
+            }}
           >
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
             distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their default
-            model text, and a search for 'lorem ipsum' will uncover many web
-            sites still in their infancy.
+            here', making it look....
+            {!readMore && (
+              <Text
+                style={{
+                  color: "#DB3C25",
+                  fontWeight: "500",
+                  fontSize: ww(12),
+                }}
+                onPress={() => setReadMore(true)}
+              >
+                Read more
+              </Text>
+            )}
+            {readMore &&
+              `like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.... `}
+            {readMore && (
+              <Text
+                style={{
+                  color: "#DB3C25",
+                  fontWeight: "500",
+                  fontSize: ww(12),
+                }}
+                onPress={() => setReadMore(false)}
+              >
+                Close
+              </Text>
+            )}
           </Text>
 
           {/* drop downs */}
           <View style={{ marginTop: ww(92) }}>
-            {/* <FlatList
-              data={data?.data}
+            <FlatList
+              data={data}
               showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => <DropdownComponent key={item.id} data={item.text} />}
-            /> */}
-            <DropDowns/>
+              renderItem={({ item }) => (
+                <DropDowns title={item.title} description={item.description} />
+              )}
+            />
+          </View>
+
+          {/* buttons */}
+          <View style={{ marginTop: ww(40), marginBottom: ww(10) }}>
+            {/* add and reduce button */}
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: ww(20)
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#fff",
+                  width: ww(48),
+                  height: ww(48),
+                  borderRadius:5,
+                }}
+              >
+                <Fontisto name="minus-a" size={ww(24)} color="black" />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  borderRadius:5,
+                  justifyContent: "center",
+                  backgroundColor: "#fff",
+                  width: ww(48),
+                  height: ww(48),
+                }}
+              >
+                <Octicons name="plus" size={ww(24)} color="black" />
+              </TouchableOpacity>
+            </View>
+
+            <Button
+              title={"Add to cart"}
+              textColor={"#fff"}
+              backgroundColor={"#DB3C25"}
+              borderColor={"#DB3C25"}
+            />
+            <Button
+              title={"Remove from cart"}
+              textColor={"#DB3C25"}
+              borderColor={"#DB3C25"}
+            />
           </View>
         </View>
       </ScrollView>
