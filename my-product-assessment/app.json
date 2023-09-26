@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "my-product-assessment",
+    "slug": "my-product-assessment",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "my-product-assessment"
+}
