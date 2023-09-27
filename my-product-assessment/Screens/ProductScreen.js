@@ -16,7 +16,7 @@ import { addToCart, decrementQuantity, removeItem, selectCartItems, selectCartIt
 
 //custm files
 import DropDowns from "../Components/MenuComponents/DropDowns";
-import { productInfoData } from "../productInformation";
+import { productInfoData } from "../DemoData/productInformation";
 import Button from "../Components/Button";
 
 

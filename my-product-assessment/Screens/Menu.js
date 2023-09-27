@@ -6,7 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 //custom files
 import ProductCard from "../Components/MenuComponents/ProductCard";
-import { productData } from "../appData";
+import { productData } from "../DemoData/appData";
 
 const Menu = () => {
  
