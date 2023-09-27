@@ -9,8 +9,7 @@ import ProductCard from "../Components/MenuComponents/ProductCard";
 import { productData } from "../appData";
 
 const Menu = () => {
-  const [products, setProducts] = useState(productData);
-  const [refreshing, setRefreshing] = useState(false);
+ 
 
   return (
     <View
@@ -61,68 +60,19 @@ const Menu = () => {
         {/* product cards */}
 
         <FlatList
-        style={{alignSelf:"center", marginBottom:ww(150)}}
-          data={products}
-          refreshing={refreshing}
-          onRefresh={() => setProducts([
-            {
-              id: 5,
-              price: 100.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/beans7.png")
-           },
-          {
-              id: 6,
-              price: 10.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/beans3.png")
-           },
-          {
-              id: 7,
-              price: 200.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/burgitos.png")
-           },
-          {
-              id: 8,
-              price: 105.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/beans6.png")
-           },
-            {
-              id: 9,
-              price: 100.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/cart2.png")
-           },
-          {
-              id: 10,
-              price: 170.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/product6.png")
-           },
-          {
-              id: 11,
-              price: 140.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/product7.png")
-           },
-          {
-              id: 12,
-              price: 190.00,
-              productName: "Vaserce Bag",
-              img: require("../assets/product8.png")
-           },
-          ])}
+          style={{ alignSelf: "center", marginBottom: ww(150) }}
+          data={productData}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <ProductCard
               key={item.id}
+              id={item.id}
               productPrice={item.price}
               productImage={item.img}
               productName={item.productName}
+              
             />
           )}
         />

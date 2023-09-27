@@ -3,9 +3,19 @@ import React from "react";
 import { ww } from "../../responsive";
 import { EvilIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, selectCartItems, selectCartItemsWithId } from "../../Redux/CartSlice";
 
-const ProductCard = ({ productImage, productName, productPrice }) => {
+
+const ProductCard = ({ id, productImage, productName, productPrice, }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const cart = useSelector(selectCartItems)
+  
+  const handleAddToCart = () => {
+    dispatch(addToCart({id, productImage, productName, productPrice}))
+ }
+ 
 
   return (
     <TouchableOpacity
@@ -19,8 +29,9 @@ const ProductCard = ({ productImage, productName, productPrice }) => {
         marginHorizontal: ww(10),
         overflow: "hidden",
       }}
+      key={id}
       activeOpacity={0.7}
-      onPress={() => navigation.navigate("ProductScreen", {productImage, productName, productPrice})}
+      onPress={() => navigation.navigate("ProductScreen", { id, productImage, productName, productPrice})}
     >
       <Image
         source={productImage}
@@ -56,6 +67,7 @@ const ProductCard = ({ productImage, productName, productPrice }) => {
           justifyContent: "center",
         }}
         activeOpacity={0.7}
+        onPress={handleAddToCart}
       >
         <EvilIcons name="cart" size={ww(24)} color="#FFF" />
         <Text style={{ color: "#fff", fontSize: ww(12), fontWeight: "400" }}>

@@ -31,7 +31,7 @@ const DropDowns = ({title, description}) => {
           }}
           onPress={() => setShowDescription(!showDescription)}
         >
-          <Ionicons name="chevron-down" size={ww(24)} color="black" />
+          <Ionicons name={showDescription ? "ios-chevron-up":"chevron-down"} size={ww(24)} color="black" />
         </TouchableOpacity>
       </View>
 

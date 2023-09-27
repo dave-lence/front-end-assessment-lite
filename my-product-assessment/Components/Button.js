@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { ww } from "../responsive";
 
-const Button = ({title, backgroundColor, borderColor, textColor}) => {
+const Button = ({title, backgroundColor, borderColor, textColor, onPress}) => {
   return (
     <TouchableOpacity
       style={{
@@ -17,6 +17,7 @@ const Button = ({title, backgroundColor, borderColor, textColor}) => {
         borderColor:borderColor,
       }}
       activeOpacity={0.7}
+      onPress={onPress}
     >
       <Text style={{ color: textColor, fontSize: ww(14), fontWeight: "500" }}>
         {title}

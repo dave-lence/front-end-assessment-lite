@@ -11,20 +11,45 @@ import Constants from "expo-constants";
 import { ww } from "../responsive";
 import { Ionicons, Octicons, Fontisto } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, decrementQuantity, removeItem, selectCartItems, selectCartItemsWithId } from "../Redux/CartSlice";
 
 //custm files
 import DropDowns from "../Components/MenuComponents/DropDowns";
 import { productInfoData } from "../productInformation";
 import Button from "../Components/Button";
 
+
 const ProductScreen = () => {
+  const dispatch = useDispatch()
+  const items = useSelector(selectCartItems) 
+  //const items = useSelector((state) => state.cart)
+
   const navigation = useNavigation();
   const [readMore, setReadMore] = useState(false);
   const {
-    params: { productName, productPrice, productImage },
+    params: {id, productName, productPrice, productImage },
   } = useRoute();
 
   const [data, setData] = useState(productInfoData);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({id, productImage, productName, productPrice}))
+  }
+
+  const removeItemFromCart = () => {
+    if(!items.length >=0) return;
+    dispatch(removeItem({id}))
+  }
+
+  const handleDecrement = () => {
+    dispatch(decrementQuantity({id}))
+  }
+ 
+
+    console.log(items)
+
+ 
 
   return (
     <View
@@ -73,6 +98,7 @@ const ProductScreen = () => {
               alignItems: "center",
               height: ww(307),
             }}
+            
           >
             <Image
               source={productImage}
@@ -172,8 +198,10 @@ const ProductScreen = () => {
                   height: ww(48),
                   borderRadius:5,
                 }}
+                onPress={handleDecrement}
+                disabled={!items.length}
               >
-                <Fontisto name="minus-a" size={ww(24)} color="black" />
+                <Fontisto name="minus-a" size={ww(24)} color={items.length > 0 ? "black" : "gray"} />
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -185,6 +213,7 @@ const ProductScreen = () => {
                   width: ww(48),
                   height: ww(48),
                 }}
+                onPress={handleAddToCart}
               >
                 <Octicons name="plus" size={ww(24)} color="black" />
               </TouchableOpacity>
@@ -195,11 +224,13 @@ const ProductScreen = () => {
               textColor={"#fff"}
               backgroundColor={"#DB3C25"}
               borderColor={"#DB3C25"}
+              onPress={handleAddToCart}
             />
             <Button
               title={"Remove from cart"}
               textColor={"#DB3C25"}
               borderColor={"#DB3C25"}
+              onPress={removeItemFromCart}
             />
           </View>
         </View>
